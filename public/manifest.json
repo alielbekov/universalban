@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "UniversalBan",
+  "version": "1.0",
+  "description": "Block celebrities, people, and terms from your feeds.",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": [
+    "*://*.reddit.com/*",
+    "*://*.twitter.com/*",
+    "*://*.youtube.com/*",
+    "*://*.facebook.com/*",
+    "*://*.instagram.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.svg"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.reddit.com/*",
+        "*://*.twitter.com/*",
+        "*://*.youtube.com/*",
+        "*://*.facebook.com/*",
+        "*://*.instagram.com/*"
+      ],
+      "js": ["content.js"]
+    }
+  ]
+}
