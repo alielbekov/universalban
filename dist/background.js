@@ -1,1 +1,0 @@
-chrome.runtime.onInstalled.addListener((function(){chrome.storage.sync.get(["platformBlocks"],(function(t){t.platformBlocks||chrome.storage.sync.set({platformBlocks:{reddit:[],twitter:[],youtube:[],facebook:[],instagram:[]}})}))}));

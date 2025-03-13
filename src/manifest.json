@@ -12,11 +12,12 @@
     "*://*.instagram.com/*"
   ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background/index.js",
+    "type": "module"
   },
   "action": {
-    "default_popup": "popup.html",
-    "default_icon": "icon.svg"
+    "default_popup": "popup/index.html",
+    "default_icon": "assets/icon.svg"
   },
   "content_scripts": [
     {
@@ -27,7 +28,14 @@
         "*://*.facebook.com/*",
         "*://*.instagram.com/*"
       ],
-      "js": ["content.js"]
+      "js": ["content/index.js"]
     }
-  ]
+  ],
+  "web_accessible_resources": [{
+    "resources": ["assets/*"],
+    "matches": ["<all_urls>"]
+  }],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
 }

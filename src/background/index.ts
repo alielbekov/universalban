@@ -1,6 +1,5 @@
-// Background script mainly handles extension initialization
+// Initialize storage with empty block lists
 chrome.runtime.onInstalled.addListener(() => {
-  // Initialize storage with empty block lists
   chrome.storage.sync.get(['platformBlocks'], (result) => {
     if (!result.platformBlocks) {
       chrome.storage.sync.set({
