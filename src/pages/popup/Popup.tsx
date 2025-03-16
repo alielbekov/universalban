@@ -5,13 +5,17 @@ import {
   TextField,
   Button,
   ToggleButton,
-  ToggleButtonGroup,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemSecondaryAction,
   IconButton,
-  styled
+  styled,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Grid,
+  alpha
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -36,6 +40,56 @@ const StyledBox = styled(Box)(({ theme }) => ({
   gap: theme.spacing(2)
 }));
 
+const StyledPaper = styled(Paper)(({ theme }) => ({
+  maxHeight: 300,
+  overflow: 'auto',
+  '& .MuiTableCell-root': {
+    padding: theme.spacing(1),
+  },
+  '& .MuiTableCell-head': {
+    backgroundColor: theme.palette.grey[500],
+    fontWeight: 'bold',
+  },
+  '& .MuiTableRow-root:last-child td': {
+    borderBottom: 0,
+  }
+}));
+
+const StyledToggleButton = styled(ToggleButton)(({ theme }) => ({
+  flex: '1 0 30%',
+  padding: theme.spacing(1),
+  minHeight: '36px',
+  '&.MuiToggleButton-root': {
+    border: `1px solid ${theme.palette.divider}`,
+    borderRadius: theme.shape.borderRadius,
+    margin: 2,
+    transition: 'all 0.2s ease-in-out',
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.primary.main, 0.08),
+    },
+    '&.Mui-selected': {
+      backgroundColor: alpha(theme.palette.primary.main, 0.12),
+      color: theme.palette.primary.main,
+      fontWeight: 'bold',
+      '&:hover': {
+        backgroundColor: alpha(theme.palette.primary.main, 0.16),
+      }
+    }
+  }
+}));
+
+const PlatformGrid = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: theme.spacing(0.5),
+  margin: theme.spacing(0, -0.25),
+  '& > *': {
+    flexBasis: 'calc(33.333% - 8px)',
+    flexGrow: 0,
+    flexShrink: 0,
+  }
+}));
+
 const Popup: React.FC = () => {
   const [selectedPlatform, setSelectedPlatform] = useState<string>('reddit');
   const [blockTerm, setBlockTerm] = useState<string>('');
@@ -50,13 +104,8 @@ const Popup: React.FC = () => {
     });
   }, []);
 
-  const handlePlatformChange = (
-    _event: React.MouseEvent<HTMLElement>,
-    newPlatform: string
-  ) => {
-    if (newPlatform !== null) {
-      setSelectedPlatform(newPlatform);
-    }
+  const handlePlatformChange = (platform: string) => {
+    setSelectedPlatform(platform);
   };
 
   const handleAddTerm = () => {
@@ -90,23 +139,22 @@ const Popup: React.FC = () => {
   return (
     <StyledBox>
       <Typography variant="h5" component="h1" gutterBottom>
-        UniversalBan
+        🛑 Universal Ban
       </Typography>
 
-      <ToggleButtonGroup
-        value={selectedPlatform}
-        exclusive
-        onChange={handlePlatformChange}
-        aria-label="platform selection"
-        size="small"
-        fullWidth
-      >
+      <PlatformGrid>
         {PLATFORMS.map((platform) => (
-          <ToggleButton key={platform.id} value={platform.id}>
+          <StyledToggleButton
+            key={platform.id}
+            value={platform.id}
+            selected={selectedPlatform === platform.id}
+            onChange={() => handlePlatformChange(platform.id)}
+            size="small"
+          >
             {platform.name}
-          </ToggleButton>
+          </StyledToggleButton>
         ))}
-      </ToggleButtonGroup>
+      </PlatformGrid>
 
       <Box sx={{ display: 'flex', gap: 1 }}>
         <TextField
@@ -122,24 +170,43 @@ const Popup: React.FC = () => {
         </Button>
       </Box>
 
-      <List sx={{ maxHeight: 300, overflow: 'auto' }}>
-        {(blockedTerms[selectedPlatform] || []).map((term, index) => (
-          <ListItem key={index}>
-            <ListItemText primary={term} />
-            <ListItemSecondaryAction>
-              <IconButton
-                edge="end"
-                aria-label="delete"
-                onClick={() => handleRemoveTerm(selectedPlatform, term)}
-                color="error"
-                size="small"
-              >
-                <DeleteIcon />
-              </IconButton>
-            </ListItemSecondaryAction>
-          </ListItem>
-        ))}
-      </List>
+      <StyledPaper>
+        <TableContainer>
+          <Table size="small" stickyHeader>
+            <TableHead>
+              <TableRow>
+                <TableCell>Blocked Terms</TableCell>
+                <TableCell align="right" sx={{ width: '80px' }}>Actions</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {(blockedTerms[selectedPlatform] || []).map((term, index) => (
+                <TableRow key={index} hover>
+                  <TableCell sx={{ wordBreak: 'break-word', maxWidth: '230px' }}>{term}</TableCell>
+                  <TableCell align="right">
+                    <IconButton
+                      edge="end"
+                      aria-label="delete"
+                      onClick={() => handleRemoveTerm(selectedPlatform, term)}
+                      color="error"
+                      size="small"
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))}
+              {(blockedTerms[selectedPlatform] || []).length === 0 && (
+                <TableRow>
+                  <TableCell colSpan={2} align="center" sx={{ color: 'text.secondary' }}>
+                    No blocked terms
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </StyledPaper>
     </StyledBox>
   );
 };
