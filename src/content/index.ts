@@ -1,56 +1,57 @@
-// Get all blocked terms from storage
-chrome.storage.sync.get(['platformBlocks'], (result) => {
-  if (!result.platformBlocks) return;
-  
-  // Combine all blocked terms from all platforms
-  const allBlockedTerms = Object.values(result.platformBlocks).flat();
-  if (!allBlockedTerms.length) return;
+function hideBlockedContent(termRegex: RegExp) {
+  // Find all elements that contain text
+  // Set to help with unique item removal
+  const removedPosts = new Set(); 
+  const elements = document.querySelectorAll<HTMLElement>('div, p, span, a, h1, h2, h3, h4, h5, h6');
+  console.log('Elements:', elements.length);
+  elements.forEach(element => {
+    const text = element.textContent?.toLocaleLowerCase() || '';
+    if (termRegex.test(text)) {
+      console.log('Found blocked content:', text);
+      // Find closest article and faceplate-tracker tags that contain blocked terms  
+      let postContainer = element.closest("article, faceplate-tracker, shreddit-post, reddit-pdp-right-rail-post, shreddit-comment, search-telemetry-tracker"); 
 
-  const termRegex = new RegExp(allBlockedTerms.join('|'), 'i');
-  console.log('Searching for:', termRegex);
-
-  function hideBlockedContent() {
-    // Find all elements that contain text
-    const elements = document.querySelectorAll<HTMLElement>('div, p, span, a, h1, h2, h3, h4, h5, h6');
-    console.log('Elements:', elements.length);
-    elements.forEach(element => {
-      const text = element.textContent || '';
-      if (termRegex.test(text)) {
-        console.log('Found blocked content:', text);
-        element.style.display = 'none';
+      if (postContainer&& !removedPosts.has(postContainer)) {
+          console.log('Removed:', postContainer);
+          removedPosts.add(postContainer);
+          postContainer.remove();
       }
-    });
-  }
-
-  // Initial check
-  hideBlockedContent();
-
-  // Watch for changes to the DOM
-  const observer = new MutationObserver(() => {
-    hideBlockedContent();
+    }
   });
+}
 
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true
-  });
-});
-
-// Watch for changes to blocked terms
-chrome.storage.onChanged.addListener((changes) => {
-  if (changes.platformBlocks) {
-    const allBlockedTerms = Object.values(changes.platformBlocks.newValue).flat();
+// Get blocked terms and apply filtering
+function updateBlockedContent() {
+  chrome.storage.sync.get(['platformBlocks'], (result) => {
+    if (!result.platformBlocks) return;
+  
+    const allBlockedTerms = Object.values(result.platformBlocks).flat();
     if (!allBlockedTerms.length) return;
 
     const termRegex = new RegExp(allBlockedTerms.join('|'), 'i');
-    console.log('New terms to block:', termRegex);
+    console.log('Updated block list:', termRegex);
+    
+    hideBlockedContent(termRegex);
+  });
+}
 
-    const elements = document.querySelectorAll<HTMLElement>('div, p, span, a, h1, h2, h3, h4, h5, h6');
-    elements.forEach(element => {
-      const text = element.textContent || '';
-      if (termRegex.test(text)) {
-        element.style.display = 'none';
-      }
-    });
-  }
+// Run on load
+updateBlockedContent();
+
+const observer_var = new MutationObserver(() => {
+  requestAnimationFrame(updateBlockedContent);
+});
+
+observer_var.observe(document.body, {
+  childList: true,
+  subtree: true,
+  characterData: true,
+  attributes: true
+});
+
+console.log('Observer started and scanning for dynamic changes...');
+
+// Updates apply immediately when new block terms are added
+chrome.storage.onChanged.addListener(() => {
+  updateBlockedContent();
 });

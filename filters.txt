@@ -8,3 +8,15 @@ Reddit: <shreddit-feed>
 Reddit: <search-telementary-tracker>
             <hr/>
         </search-telementary-tracker>
+
+
+Reddit Carousel:  <shreddit-gallery-carousel>
+                        <faceplate-tracker>
+                        </faceplate-tracker>
+                  </shreddit-gallery-carousel>
+        
+Body: <shreddit-app>
+
+Ads: <shreddit-ad-post>
+
+Post: <shreddit-post>
