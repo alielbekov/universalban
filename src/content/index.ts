@@ -20,38 +20,38 @@ function hideBlockedContent(termRegex: RegExp) {
   });
 }
 
-chrome.storage.sync.get(['platformBlocks'], (result) => {
-  if (!result.platformBlocks) return;
+// Get blocked terms and apply filtering
+function updateBlockedContent() {
+  chrome.storage.sync.get(['platformBlocks'], (result) => {
+    if (!result.platformBlocks) return;
   
-  // Combine all blocked terms from all platforms
-  const allBlockedTerms = Object.values(result.platformBlocks).flat();
-  if (!allBlockedTerms.length) return;
-
-  const termRegex = new RegExp(allBlockedTerms.join('|'), 'i');
-  console.log('Searching for:', termRegex);
-
-  // Initial check
-  hideBlockedContent(termRegex);
-
-  // Watch for changes to the DOM
-  const observer = new MutationObserver(() => {
-    hideBlockedContent(termRegex);
-  });
-
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true
-  });
-});
-
-// Watch for changes to blocked terms
-chrome.storage.onChanged.addListener((changes) => {
-  if (changes.platformBlocks) {
-    const allBlockedTerms = Object.values(changes.platformBlocks.newValue).flat();
+    const allBlockedTerms = Object.values(result.platformBlocks).flat();
     if (!allBlockedTerms.length) return;
 
     const termRegex = new RegExp(allBlockedTerms.join('|'), 'i');
-    console.log('New terms to block:', termRegex);
+    console.log('Updated block list:', termRegex);
+    
     hideBlockedContent(termRegex);
-  }
+  });
+}
+
+// Run on load
+updateBlockedContent();
+
+const observer_var = new MutationObserver(() => {
+  requestAnimationFrame(updateBlockedContent);
+});
+
+observer_var.observe(document.body, {
+  childList: true,
+  subtree: true,
+  characterData: true,
+  attributes: true
+});
+
+console.log('Observer started and scanning for dynamic changes...');
+
+// Updates apply immediately when new block terms are added
+chrome.storage.onChanged.addListener(() => {
+  updateBlockedContent();
 });
