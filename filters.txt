@@ -16,3 +16,7 @@ Reddit Carousel:  <shreddit-gallery-carousel>
                   </shreddit-gallery-carousel>
         
 Body: <shreddit-app>
+
+Ads: <shreddit-ad-post>
+
+Post: <shreddit-post>

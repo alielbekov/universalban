@@ -9,7 +9,7 @@ function hideBlockedContent(termRegex: RegExp) {
     if (termRegex.test(text)) {
       console.log('Found blocked content:', text);
       // Find closest article and faceplate-tracker tags that contain blocked terms  
-      let postContainer = element.closest("article, faceplate-tracker"); 
+      let postContainer = element.closest("article, faceplate-tracker, shreddit-post, reddit-pdp-right-rail-post, shreddit-comment, search-telemetry-tracker"); 
 
       if (postContainer&& !removedPosts.has(postContainer)) {
           console.log('Removed:', postContainer);
@@ -37,8 +37,8 @@ chrome.storage.sync.get(['platformBlocks'], (result) => {
   const observer = new MutationObserver(() => {
     hideBlockedContent(termRegex);
   });
-
-  observer.observe(document.body, {
+  let targetContainer = document.querySelector('input') || document.body;
+  observer.observe(targetContainer, {
     childList: true,
     subtree: true
   });
@@ -53,6 +53,5 @@ chrome.storage.onChanged.addListener((changes) => {
     const termRegex = new RegExp(allBlockedTerms.join('|'), 'i');
     console.log('New terms to block:', termRegex);
     hideBlockedContent(termRegex);
-    // });
   }
 });
