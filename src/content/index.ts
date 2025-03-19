@@ -37,8 +37,8 @@ chrome.storage.sync.get(['platformBlocks'], (result) => {
   const observer = new MutationObserver(() => {
     hideBlockedContent(termRegex);
   });
-  let targetContainer = document.querySelector('input') || document.body;
-  observer.observe(targetContainer, {
+
+  observer.observe(document.body, {
     childList: true,
     subtree: true
   });
