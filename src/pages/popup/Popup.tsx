@@ -14,7 +14,6 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Grid,
   alpha
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -40,6 +39,22 @@ const StyledBox = styled(Box)(({ theme }) => ({
   gap: theme.spacing(2)
 }));
 
+const PlatformGrid = styled(Box)(({ theme }) => ({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))',
+  gap: theme.spacing(1)
+}));
+
+const StyledToggleButton = styled(ToggleButton)(({ theme }) => ({
+  border: `1px solid ${alpha(theme.palette.primary.main, 0.25)}`,
+  '&.Mui-selected': {
+    backgroundColor: alpha(theme.palette.primary.main, 0.2),
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.primary.main, 0.3),
+    }
+  }
+}));
+
 const StyledPaper = styled(Paper)(({ theme }) => ({
   maxHeight: 300,
   overflow: 'auto',
@@ -47,46 +62,8 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(1),
   },
   '& .MuiTableCell-head': {
-    backgroundColor: theme.palette.grey[500],
+    backgroundColor: theme.palette.grey[900],
     fontWeight: 'bold',
-  },
-  '& .MuiTableRow-root:last-child td': {
-    borderBottom: 0,
-  }
-}));
-
-const StyledToggleButton = styled(ToggleButton)(({ theme }) => ({
-  flex: '1 0 30%',
-  padding: theme.spacing(1),
-  minHeight: '36px',
-  '&.MuiToggleButton-root': {
-    border: `1px solid ${theme.palette.divider}`,
-    borderRadius: theme.shape.borderRadius,
-    margin: 2,
-    transition: 'all 0.2s ease-in-out',
-    '&:hover': {
-      backgroundColor: alpha(theme.palette.primary.main, 0.08),
-    },
-    '&.Mui-selected': {
-      backgroundColor: alpha(theme.palette.primary.main, 0.12),
-      color: theme.palette.primary.main,
-      fontWeight: 'bold',
-      '&:hover': {
-        backgroundColor: alpha(theme.palette.primary.main, 0.16),
-      }
-    }
-  }
-}));
-
-const PlatformGrid = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexWrap: 'wrap',
-  gap: theme.spacing(0.5),
-  margin: theme.spacing(0, -0.25),
-  '& > *': {
-    flexBasis: 'calc(33.333% - 8px)',
-    flexGrow: 0,
-    flexShrink: 0,
   }
 }));
 
