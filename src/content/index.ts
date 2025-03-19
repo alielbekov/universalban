@@ -1,4 +1,25 @@
-// Get all blocked terms from storage
+function hideBlockedContent(termRegex: RegExp) {
+  // Find all elements that contain text
+  // Set to help with unique item removal
+  const removedPosts = new Set(); 
+  const elements = document.querySelectorAll<HTMLElement>('div, p, span, a, h1, h2, h3, h4, h5, h6');
+  console.log('Elements:', elements.length);
+  elements.forEach(element => {
+    const text = element.textContent?.toLocaleLowerCase() || '';
+    if (termRegex.test(text)) {
+      console.log('Found blocked content:', text);
+      // Find closest article and faceplate-tracker tags that contain blocked terms  
+      let postContainer = element.closest("article, faceplate-tracker"); 
+
+      if (postContainer&& !removedPosts.has(postContainer)) {
+          console.log('Removed:', postContainer);
+          removedPosts.add(postContainer);
+          postContainer.remove();
+      }
+    }
+  });
+}
+
 chrome.storage.sync.get(['platformBlocks'], (result) => {
   if (!result.platformBlocks) return;
   
@@ -9,25 +30,12 @@ chrome.storage.sync.get(['platformBlocks'], (result) => {
   const termRegex = new RegExp(allBlockedTerms.join('|'), 'i');
   console.log('Searching for:', termRegex);
 
-  function hideBlockedContent() {
-    // Find all elements that contain text
-    const elements = document.querySelectorAll<HTMLElement>('div, p, span, a, h1, h2, h3, h4, h5, h6');
-    console.log('Elements:', elements.length);
-    elements.forEach(element => {
-      const text = element.textContent || '';
-      if (termRegex.test(text)) {
-        console.log('Found blocked content:', text);
-        element.style.display = 'none';
-      }
-    });
-  }
-
   // Initial check
-  hideBlockedContent();
+  hideBlockedContent(termRegex);
 
   // Watch for changes to the DOM
   const observer = new MutationObserver(() => {
-    hideBlockedContent();
+    hideBlockedContent(termRegex);
   });
 
   observer.observe(document.body, {
@@ -44,13 +52,7 @@ chrome.storage.onChanged.addListener((changes) => {
 
     const termRegex = new RegExp(allBlockedTerms.join('|'), 'i');
     console.log('New terms to block:', termRegex);
-
-    const elements = document.querySelectorAll<HTMLElement>('div, p, span, a, h1, h2, h3, h4, h5, h6');
-    elements.forEach(element => {
-      const text = element.textContent || '';
-      if (termRegex.test(text)) {
-        element.style.display = 'none';
-      }
-    });
+    hideBlockedContent(termRegex);
+    // });
   }
 });
