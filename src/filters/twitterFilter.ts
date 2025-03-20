@@ -16,12 +16,14 @@ export class TwitterFilter extends BaseFilter implements ContentFilter {
     if (!this.blockedTerms.length) return;
 
     // Find all tweets
-    const tweets = document.querySelectorAll('[data-testid="tweet"]');
+    //const tweets = document.querySelectorAll('[data-testid="cellInnerDiv"]');
+    const tweets = document.querySelectorAll('article');
+    console.log(tweets);
     tweets.forEach(tweet => {
       const textContent = tweet.textContent;
       if (this.containsBlockedTerm(textContent)) {
         tweet.remove();
       }
-    });
+    }); 
   }
 }

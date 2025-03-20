@@ -1,22 +1,28 @@
-Reddit: <shreddit-feed>
-                <article/>
+Reddit: 
+                <shreddit-feed>
+                        <article/>
+                        <hr/>
+                        <article/>
+                        <article/>
+                </shreddit-feed>
+
+        Reddit: <search-telementary-tracker>
                 <hr/>
-                <article/>
-                <article/>
-        </shreddit-feed>
-
-Reddit: <search-telementary-tracker>
-            <hr/>
-        </search-telementary-tracker>
+                </search-telementary-tracker>
 
 
-Reddit Carousel:  <shreddit-gallery-carousel>
-                        <faceplate-tracker>
-                        </faceplate-tracker>
-                  </shreddit-gallery-carousel>
+        Reddit Carousel:  <shreddit-gallery-carousel>
+                                <faceplate-tracker>
+                                </faceplate-tracker>
+                        </shreddit-gallery-carousel>
         
-Body: <shreddit-app>
+        Body: <shreddit-app>
 
-Ads: <shreddit-ad-post>
+        Ads: <shreddit-ad-post>
 
-Post: <shreddit-post>
+        Post: <shreddit-post>
+
+Twitter:
+        <div data-testid="cellInnerDiv"> <div/>
+
+
