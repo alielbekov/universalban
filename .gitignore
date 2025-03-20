@@ -10,6 +10,9 @@
 # Testing
 /coverage
 
+# Node
+/node_modules
+
 # Environment variables
 .env
 .env.local
