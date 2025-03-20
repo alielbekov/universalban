@@ -62,6 +62,10 @@ Youtube:
 
         Playlist content: <ytd-playlist-panel-video-renderer>
 
+        News suggestion: <ytd-radio-renderer>
+
+        Search suggestion (feed): <ytd-search-refinement-card-renderer>
+
 
 
 
