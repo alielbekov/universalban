@@ -26,3 +26,42 @@ Twitter:
         <div data-testid="cellInnerDiv"> <div/>
 
 
+Youtube:
+        Videos and shorts: <ytd-rich-item-renderer>
+
+        Shorts full screen: <ytd-reel-video-renderer>
+
+        Shorts title: <h2 #ytShortsVideoTitleViewModelShortsVideoTitle>
+
+        Comment: <ytd-comment-thread-renderer>
+
+        Comment string: <yt-attributed-string>
+
+        Comment replies: <ytd-comment-replies-renderer>
+
+        Suggested videos (compact): <ytd-compact-video-renderer>
+
+        Suggested shorts (compact): <ytm-shorts-lockup-view-model-v2>
+
+        Video detailed: <div #player>
+                                <div #title>
+                                </div>
+                        </div>
+
+        Post:  <ytd-post-renderer>
+
+        Channel: <ytd-channel-renderer>
+
+        Feed: <ytd-browse>
+
+        Channel video player: <ytd-channel-video-player-renderer>
+
+        Video grid: <ytd-grid-video-renderer>
+
+        Playlist main: <yt-lockup-view-model>
+
+        Playlist content: <ytd-playlist-panel-video-renderer>
+
+
+
+
