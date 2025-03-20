@@ -61,6 +61,7 @@ Youtube:
         Playlist main: <yt-lockup-view-model>
 
         Playlist content: <ytd-playlist-panel-video-renderer>
+                          <ytd-playlist-video-renderer>
 
         News suggestion: <ytd-radio-renderer>
 
