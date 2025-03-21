@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="64" cy="64" r="60" fill="#4F46E5" />
+  
+  <!-- Shield Shape -->
+  <path d="M64 24C45.6 34.4 36 38.4 36 52V76C36 86.4 48 94.4 64 100C80 94.4 92 86.4 92 76V52C92 38.4 82.4 34.4 64 24Z" fill="white"/>
+  
+  <!-- Ban Symbol -->
+  <circle cx="64" cy="64" r="24" stroke="#4F46E5" stroke-width="4"/>
+  <line x1="46.3432" y1="46.3432" x2="81.6569" y2="81.6569" stroke="#4F46E5" stroke-width="4"/>
+</svg>
