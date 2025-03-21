@@ -1,5 +1,6 @@
 import { hideRedditContent } from '../filters/redditFilter';
 import { hideTwitterContent } from '../filters/twitterFilter';
+import { hideFacebookContent } from '../filters/facebookFilter';
 
 /**
  * Determines which platform filter to use based on the current URL
@@ -14,6 +15,9 @@ function applyPlatformFilter(termRegex: RegExp): void {
   } else if (currentUrl.includes('twitter.com') || currentUrl.includes('x.com')) {
     console.log('Applying Twitter filter');
     hideTwitterContent(termRegex);
+  } else if (currentUrl.includes('facebook.com')) {
+    console.log('Applying Facebook filter');
+    hideFacebookContent(termRegex);
   } else {
     console.log('No specific filter for this platform');
   }
