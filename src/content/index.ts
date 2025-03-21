@@ -1,23 +1,22 @@
-function hideBlockedContent(termRegex: RegExp) {
-  // Find all elements that contain text
-  // Set to help with unique item removal
-  const removedPosts = new Set(); 
-  const elements = document.querySelectorAll<HTMLElement>('div, p, span, a, h1, h2, h3, h4, h5, h6');
-  console.log('Elements:', elements.length);
-  elements.forEach(element => {
-    const text = element.textContent?.toLocaleLowerCase() || '';
-    if (termRegex.test(text)) {
-      console.log('Found blocked content:', text);
-      // Find closest article and faceplate-tracker tags that contain blocked terms  
-      let postContainer = element.closest("article, faceplate-tracker, shreddit-post, reddit-pdp-right-rail-post, shreddit-comment, search-telemetry-tracker"); 
+import { hideRedditContent } from '../filters/redditFilter';
+import { hideTwitterContent } from '../filters/twitterFilter';
 
-      if (postContainer&& !removedPosts.has(postContainer)) {
-          console.log('Removed:', postContainer);
-          removedPosts.add(postContainer);
-          postContainer.remove();
-      }
-    }
-  });
+/**
+ * Determines which platform filter to use based on the current URL
+ * @param termRegex - Regular expression pattern for terms to block
+ */
+function applyPlatformFilter(termRegex: RegExp): void {
+  const currentUrl = window.location.href.toLowerCase();
+  
+  if (currentUrl.includes('reddit.com')) {
+    console.log('Applying Reddit filter');
+    hideRedditContent(termRegex);
+  } else if (currentUrl.includes('twitter.com') || currentUrl.includes('x.com')) {
+    console.log('Applying Twitter filter');
+    hideTwitterContent(termRegex);
+  } else {
+    console.log('No specific filter for this platform');
+  }
 }
 
 // Get blocked terms and apply filtering
@@ -31,7 +30,8 @@ function updateBlockedContent() {
     const termRegex = new RegExp(allBlockedTerms.join('|'), 'i');
     console.log('Updated block list:', termRegex);
     
-    hideBlockedContent(termRegex);
+    // Apply the appropriate platform filter
+    applyPlatformFilter(termRegex);
   });
 }
 
