@@ -91,11 +91,10 @@ export default function Privacy() {
                 Contact Us
               </h2>
               <p className="text-gray-600 dark:text-gray-300">
-                If you have any questions about this Privacy Policy, please contact us through our{' '}
-                <a href="/contact" className="text-blue-600 hover:text-blue-500">
-                  contact form
-                </a>
-                .
+                We don&apos;t collect any personal information. The extension operates entirely within your browser.
+              </p>
+              <p className="text-gray-600 dark:text-gray-300">
+                If you have any questions about this Privacy Policy, please contact us through our &quot;contact form&quot; or email us at support@universalban.com.
               </p>
             </section>
           </div>
