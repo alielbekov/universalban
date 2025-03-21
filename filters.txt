@@ -38,6 +38,7 @@ Youtube:
         Comment string: <yt-attributed-string>
 
         Comment replies: <ytd-comment-replies-renderer>
+                         <ytd-comment-view-model>
 
         Suggested videos (compact): <ytd-compact-video-renderer>
 
