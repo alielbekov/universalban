@@ -9,6 +9,7 @@ import { hideYoutubeContent } from '../filters/youtubeFilter';
  */
 function applyPlatformFilter(termRegex: RegExp): void {
   const currentUrl = window.location.href.toLowerCase();
+  console.log('Current URL:', currentUrl);
   
   if (currentUrl.includes('reddit.com')) {
     console.log('Applying Reddit filter');
@@ -29,14 +30,16 @@ function applyPlatformFilter(termRegex: RegExp): void {
 
 // Get blocked terms and apply filtering
 function updateBlockedContent() {
-  chrome.storage.sync.get(['platformBlocks'], (result) => {
-    if (!result.platformBlocks) return;
+  console.log('Updating blocked content...');
+  chrome.storage.sync.get(['blockedTerms'], (result) => {
+    console.log('Retrieved blocked terms:', result.blockedTerms);
+    if (!result.blockedTerms || !result.blockedTerms.length) {
+      console.log('No blocked terms found');
+      return;
+    }
   
-    const allBlockedTerms = Object.values(result.platformBlocks).flat();
-    if (!allBlockedTerms.length) return;
-
-    const termRegex = new RegExp(allBlockedTerms.join('|'), 'i');
-    console.log('Updated block list:', termRegex);
+    const termRegex = new RegExp(result.blockedTerms.join('|'), 'i');
+    console.log('Updated block list regex:', termRegex);
     
     // Apply the appropriate platform filter
     applyPlatformFilter(termRegex);
@@ -44,22 +47,24 @@ function updateBlockedContent() {
 }
 
 // Run on load
+console.log('Content script loaded');
 updateBlockedContent();
 
-const observer_var = new MutationObserver(() => {
+// Listen for storage changes
+chrome.storage.onChanged.addListener((changes) => {
+  if (changes.blockedTerms) {
+    console.log('Block list updated, reapplying filters...');
+    updateBlockedContent();
+  }
+});
+
+// Set up observer to watch for DOM changes
+const observer = new MutationObserver(() => {
   requestAnimationFrame(updateBlockedContent);
 });
 
-observer_var.observe(document.body, {
+// Start observing
+observer.observe(document.body, {
   childList: true,
-  subtree: true,
-  characterData: true,
-  attributes: true
-});
-
-console.log('Observer started and scanning for dynamic changes...');
-
-// Updates apply immediately when new block terms are added
-chrome.storage.onChanged.addListener(() => {
-  updateBlockedContent();
+  subtree: true
 });
