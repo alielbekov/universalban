@@ -4,6 +4,19 @@ import { hideFacebookContent } from '../filters/facebookFilter';
 import { hideYoutubeContent } from '../filters/youtubeFilter';
 
 /**
+ * Creates a word-boundary regex pattern from blocked terms
+ * @param terms - Array of terms to block
+ * @returns RegExp that matches whole words only
+ */
+function createBlockRegex(terms: string[]): RegExp {
+  // Escape special regex characters and wrap each term with word boundaries
+  const escapedTerms = terms.map(term => 
+    `\\b${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`
+  );
+  return new RegExp(escapedTerms.join('|'), 'i');
+}
+
+/**
  * Determines which platform filter to use based on the current URL
  * @param termRegex - Regular expression pattern for terms to block
  */
@@ -38,7 +51,7 @@ function updateBlockedContent() {
       return;
     }
   
-    const termRegex = new RegExp(result.blockedTerms.join('|'), 'i');
+    const termRegex = createBlockRegex(result.blockedTerms);
     console.log('Updated block list regex:', termRegex);
     
     // Apply the appropriate platform filter
