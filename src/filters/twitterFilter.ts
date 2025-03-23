@@ -15,21 +15,45 @@ export function hideTwitterContent(termRegex: RegExp): void {
   console.log('Twitter elements scanned:', elements.length);
   
   elements.forEach(element => {
-    const text = element.textContent?.toLocaleLowerCase() || '';
-    if (termRegex.test(text)) {
-      console.log('Found blocked content on Twitter:', text);
-      
-      // Find closest Twitter-specific containers that contain blocked terms
-      // Twitter uses data-testid attributes for many components
-      const postContainer = element.closest(
-        "[data-testid='tweet'], [data-testid='tweetDetail'], article"
-      ); 
+    try {
+      const text = element.textContent?.toLocaleLowerCase() || '';
+      if (termRegex.test(text)) {
+        console.log('Found blocked content on Twitter:', text);
+        
+        // Find closest Twitter-specific containers that contain blocked terms
+        // Twitter uses data-testid attributes for many components
+        const postContainer = element.closest(
+          "[data-testid='tweet'], [data-testid='tweetDetail'], article"
+        ); 
 
-      if (postContainer && !removedPosts.has(postContainer as HTMLElement)) {
-        console.log('Removed Twitter content:', postContainer);
-        removedPosts.add(postContainer as HTMLElement);
-        postContainer.remove();
+        if (postContainer && !removedPosts.has(postContainer as HTMLElement)) {
+          // Find the parent cellInnerDiv
+          const cellInnerDiv = postContainer.closest('[data-testid="cellInnerDiv"]');
+          
+          if (cellInnerDiv) {
+            // Find the separator within the same cellInnerDiv
+            const separator = cellInnerDiv.querySelector('[role="separator"]');
+            if (separator) {
+              console.log('Removing separator');
+              separator.remove();
+            }
+            
+            // Remove the post container
+            console.log('Removing Twitter content');
+            postContainer.remove();
+            
+            // Add to removed set
+            removedPosts.add(postContainer as HTMLElement);
+          } else {
+            // Fallback: just remove the post container
+            console.log('Removing Twitter content (fallback)');
+            removedPosts.add(postContainer as HTMLElement);
+            postContainer.remove();
+          }
+        }
       }
+    } catch (error) {
+      console.error('Error while processing Twitter content:', error);
     }
   });
 }
