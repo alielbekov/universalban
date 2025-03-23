@@ -1,5 +1,9 @@
 import Image from "next/image";
 import Layout from './components/Layout';
+import { FaReddit, FaTwitter, FaFacebook, FaYoutube, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { FaGlobe } from 'react-icons/fa';
+import { MdAccessTime } from 'react-icons/md';
+import { IoShieldCheckmark } from 'react-icons/io5';
 
 export default function Home() {
   return (
@@ -16,12 +20,37 @@ export default function Home() {
               priority
             />
           </div>
-          <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            UniversalBan
+          <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            Manage All Your Feeds
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <h2 className="text-3xl font-semibold text-gray-700 dark:text-gray-200 mb-6">
+            From One Place
+          </h2>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
             Take control of your social media experience. Block unwanted content across multiple platforms with our powerful Chrome extension.
           </p>
+          
+          {/* Social Media Icons */}
+          <div className="flex justify-center gap-6 mb-8">
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors">
+              <FaLinkedin className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+            </div>
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors">
+              <FaReddit className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+            </div>
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors">
+              <FaTwitter className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+            </div>
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors">
+              <FaFacebook className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+            </div>
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors">
+              <FaYoutube className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+            </div>
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors">
+              <FaInstagram className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+            </div>
+          </div>
         </div>
 
         {/* Features Grid */}
@@ -29,9 +58,7 @@ export default function Home() {
           {/* Multi-Platform Support */}
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
             <div className="text-blue-600 dark:text-blue-400 mb-4">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-              </svg>
+              <FaGlobe className="w-8 h-8" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Multi-Platform Support</h3>
             <p className="text-gray-600 dark:text-gray-300">
@@ -42,9 +69,7 @@ export default function Home() {
           {/* Real-Time Filtering */}
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
             <div className="text-blue-600 dark:text-blue-400 mb-4">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
+              <MdAccessTime className="w-8 h-8" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Real-Time Filtering</h3>
             <p className="text-gray-600 dark:text-gray-300">
@@ -55,9 +80,7 @@ export default function Home() {
           {/* Privacy First */}
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
             <div className="text-blue-600 dark:text-blue-400 mb-4">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
+              <IoShieldCheckmark className="w-8 h-8" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Privacy First</h3>
             <p className="text-gray-600 dark:text-gray-300">
