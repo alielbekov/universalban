@@ -6,7 +6,7 @@ export default function HowItWorks() {
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
-            How UniversalBan Works
+            How Universal Ban Works
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Take control of your social media experience with our powerful content filtering system
@@ -21,7 +21,7 @@ export default function HowItWorks() {
                 1. Install & Configure
               </h2>
               <p className="text-gray-600 dark:text-gray-300">
-                Install UniversalBan from the Chrome Web Store and click on the extension icon to open the settings panel. You can start adding terms, celebrities, or topics you want to block from your feeds.
+                Install Universal Ban from the Chrome Web Store and click on the extension icon to open the settings panel. You can start adding terms, celebrities, or topics you want to block from your feeds.
               </p>
             </div>
             <div className="flex-1 rounded-lg bg-gray-100 dark:bg-gray-800 p-6">
@@ -70,7 +70,7 @@ export default function HowItWorks() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Install UniversalBan Now
+            Install Universal Ban Now
           </a>
         </div>
       </div>

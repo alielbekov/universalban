@@ -2,7 +2,7 @@ import Layout from '../components/Layout';
 
 const faqs = [
   {
-    question: "What is UniversalBan?",
+    question: "What is Universal Ban?",
     answer: "UniversalBan is a Chrome extension that allows you to filter out unwanted content from your social media feeds. You can block specific terms, celebrities, or topics across multiple platforms including Reddit, Twitter/X, YouTube, Facebook, and Instagram."
   },
   {
@@ -15,19 +15,19 @@ const faqs = [
   },
   {
     question: "Which platforms are supported?",
-    answer: "UniversalBan currently supports Reddit, Twitter/X, YouTube, Facebook, and Instagram. We're constantly working on adding support for more platforms."
+    answer: "Universal Ban currently supports Reddit, Twitter/X, YouTube, Facebook, and Instagram. We're constantly working on adding support for more platforms."
   },
   {
     question: "Do I need to refresh the page for changes to take effect?",
-    answer: "No! UniversalBan works in real-time. When you add or remove terms from your block list, the changes take effect immediately without requiring a page refresh."
+    answer: "No! Universal Ban works in real-time. When you add or remove terms from your block list, the changes take effect immediately without requiring a page refresh."
   },
   {
     question: "Can I sync my settings across devices?",
-    answer: "Yes, if you're signed into Chrome, your blocked terms will automatically sync across all your devices where you've installed UniversalBan."
+    answer: "Yes, if you're signed into Chrome, your blocked terms will automatically sync across all your devices where you've installed Universal Ban."
   },
   {
-    question: "Is UniversalBan free?",
-    answer: "Yes, UniversalBan is completely free to use. We believe in making the internet a better place for everyone."
+    question: "Is Universal Ban free?",
+    answer: "Yes, Universal Ban is completely free to use. We believe in making the internet a better place for everyone."
   },
   {
     question: "How can I report a bug or suggest a feature?",
@@ -44,7 +44,7 @@ export default function FAQ() {
             Frequently Asked Questions
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Find answers to common questions about UniversalBan
+            Find answers to common questions about Universal  Ban
           </p>
         </div>
 

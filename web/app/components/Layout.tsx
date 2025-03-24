@@ -11,7 +11,7 @@ export default function Layout({ children }: LayoutProps) {
       <header className="bg-white dark:bg-gray-900 shadow-sm">
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <Link href="/" className="text-2xl font-bold text-gray-900 dark:text-white">
-            UniversalBan
+            Universal Ban
           </Link>
           <div className="flex space-x-8">
             <Link href="/how-it-works" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">

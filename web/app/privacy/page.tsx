@@ -28,7 +28,7 @@ export default function Privacy() {
                 Information We Collect
               </h2>
               <p className="text-gray-600 dark:text-gray-300 mb-4">
-                UniversalBan is designed with privacy in mind. We collect minimal information:
+                Universal Ban is designed with privacy in mind. We collect minimal information:
               </p>
               <ul className="list-disc pl-6 text-gray-600 dark:text-gray-300 space-y-2">
                 <li>Your blocked terms and preferences (stored locally in your browser)</li>
