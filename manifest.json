@@ -10,7 +10,8 @@
     "*://*.x.com/*",
     "*://*.youtube.com/*",
     "*://*.facebook.com/*",
-    "*://*.instagram.com/*"
+    "*://*.instagram.com/*",
+    "*://*.linkedin.com/*"
   ],
   "background": {
     "service_worker": "background/background.js",
@@ -28,7 +29,8 @@
         "*://*.x.com/*",
         "*://*.youtube.com/*",
         "*://*.facebook.com/*",
-        "*://*.instagram.com/*"
+        "*://*.instagram.com/*",
+        "*://*.linkedin.com/*"
       ],
       "js": ["content/content.js"]
     }

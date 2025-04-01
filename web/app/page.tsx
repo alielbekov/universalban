@@ -32,23 +32,24 @@ export default function Home() {
           
           {/* Social Media Icons */}
           <div className="flex justify-center gap-6 mb-8">
-            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors">
-              <FaLinkedin className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-[#0077b5]/20 dark:hover:bg-[#0077b5]/40 transition-colors">
+              <FaLinkedin className="w-6 h-6 text-[#0077b5]" />
             </div>
-            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors">
-              <FaReddit className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-[#FF4500]/20 dark:hover:bg-[#FF4500]/40 transition-colors">
+              <FaReddit className="w-6 h-6 text-[#FF4500]" />
             </div>
-            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors">
-              <FaTwitter className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-[#1DA1F2]/20 dark:hover:bg-[#1DA1F2]/40 transition-colors">
+              <FaTwitter className="w-6 h-6 text-[#1DA1F2]" />
             </div>
-            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors">
-              <FaFacebook className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-[#FF0000]/20 dark:hover:bg-[#FF0000]/40 transition-colors">
+              <FaYoutube className="w-6 h-6 text-[#FF0000]" />
             </div>
-            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors">
-              <FaYoutube className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-[#1877F2]/20 dark:hover:bg-[#1877F2]/40 transition-colors">
+              <FaFacebook className="w-6 h-6 text-[#1877F2]" />
             </div>
-            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors">
-              <FaInstagram className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-[#E4405F]/20 dark:hover:bg-[#E4405F]/40 transition-colors">
+              <FaInstagram className="w-6 h-6 text-[#E4405F]" />
             </div>
           </div>
         </div>

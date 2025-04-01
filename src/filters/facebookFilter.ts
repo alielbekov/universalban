@@ -1,6 +1,3 @@
-import { ContentFilter } from './types';
-import { BaseFilter } from './baseFilter';
-
 // Set to track removed posts to avoid duplicates
 const removedPosts = new Set<HTMLElement>();
 

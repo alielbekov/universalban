@@ -2,6 +2,7 @@ import { hideRedditContent } from '../filters/redditFilter';
 import { hideTwitterContent } from '../filters/twitterFilter';
 import { hideFacebookContent } from '../filters/facebookFilter';
 import { hideYoutubeContent } from '../filters/youtubeFilter';
+import { hideLinkedInContent } from '../filters/linkedinFilter';
 
 /**
  * Creates a word-boundary regex pattern from blocked terms
@@ -36,6 +37,9 @@ function applyPlatformFilter(termRegex: RegExp): void {
   } else if (currentUrl.includes('youtube.com')) {
     console.log('Applying Youtube filter');
     hideYoutubeContent(termRegex);
+  } else if (currentUrl.includes('linkedin.com')) {
+    console.log('Applying LinkedIn filter');
+    hideLinkedInContent(termRegex);
   } else {
     console.log('No specific filter for this platform');
   }
