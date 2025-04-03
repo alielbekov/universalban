@@ -18,7 +18,7 @@
   },
   "action": {
     "default_popup": "popup/index.html",
-    "default_icon": "assets/icon.svg"
+    "default_icon": "assets/icon.png"
   },
   "content_scripts": [
     {
