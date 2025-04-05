@@ -12,7 +12,6 @@ export function hideYoutubeContent(termRegex: RegExp): void {
     
     // Find all elements that contain text
     const elements = document.querySelectorAll<HTMLElement>('div, p, span, a, h1, h2, h3, h4, h5, h6');
-    console.log('Youtube elements scanned:', elements.length);
     
     elements.forEach(element => {
       const text = element.textContent?.toLocaleLowerCase() || '';
