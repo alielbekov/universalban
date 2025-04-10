@@ -3,7 +3,7 @@
   "name": "UniversalBan",
   "version": "1.0",
   "description": "Block celebrities, people, and terms from your feeds.",
-  "permissions": ["storage", "activeTab", "scripting"],
+  "permissions": ["storage"],
   "host_permissions": [
     "*://*.reddit.com/*",
     "*://*.twitter.com/*",
