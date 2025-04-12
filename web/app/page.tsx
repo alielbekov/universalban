@@ -48,11 +48,11 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Call to Action */}
-        <div className="text-center">
-          <div className="flex justify-center gap-4 mb-4">
+        {/* Call to Action and Demo */}
+        <div className="flex flex-col items-center">
+          <div className="flex justify-center gap-4 mb-8">
             <a
-              href="https://chrome.google.com/webstore"
+              href="https://chromewebstore.google.com/detail/universalban/hmildncdjklmgkdccblpjlompemkanpp"
               className="inline-flex items-center px-4 py-2 border border-transparent text-lg font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
               target="_blank"
               rel="noopener noreferrer"
@@ -69,13 +69,26 @@ export default function Home() {
               Source
             </a>
           </div>
+
+          {/* Demo Video */}
+          <div className="w-full max-w-3xl">
+            <div className="relative pb-[56.25%] h-0">
+              <iframe
+                className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
+                src="https://www.youtube.com/embed/1oo7K-80BL8"
+                title="UniversalBan Demo Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
         </div>
 
       </div>
 
       {/* Fixed Webstore Badge */}
       <a
-        href="https://chrome.google.com/webstore"
+        href="https://chromewebstore.google.com/detail/universalban/hmildncdjklmgkdccblpjlompemkanpp"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-8 right-8 hover:opacity-90 transition-opacity z-50"
